@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+
+  tomcatdeployment:
+    image: ziyashaw/jenkins-pipeline-mvc
+    ports:
+      - "8088:8080"
+    container_name: tomcatcontainer
+    depends_on:
+      - database
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "8082:3306"
+    volumes:
+      - /var/lib/data_storage:/var/lib/mysql
